@@ -1,0 +1,102 @@
+<h2 mat-dialog-title>{{ accionTitle }} Actor</h2>
+<hr>
+<mat-dialog-content>
+    <form [formGroup]="actorForm">
+        <!-- Se mantiene actorForm -->
+        <div class="grid grid-cols-2">
+            <div>
+                <mat-grid-list cols="1" rowHeight="80px">
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>ID</mat-label>
+                            <input matInput autocomplete="off" formControlName="employee_id" placeholder="E000">
+                            <!-- Cambiado a employee_id -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Nombre</mat-label>
+                            <input matInput autocomplete="off" formControlName="first_name">
+                            <!-- Cambiado a first_name -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Apellido</mat-label>
+                            <input matInput autocomplete="off" formControlName="last_name">
+                            <!-- Cambiado a last_name -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput autocomplete="off" formControlName="email">
+                            <!-- Añadido email -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+            <div>
+                <mat-grid-list cols="1" rowHeight="80px">
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Fecha de Ingreso</mat-label>
+                            <input matInput [matDatepicker]="hire_date" formControlName="hire_date">
+                            <!-- Añadido hire_date -->
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="hire_date"></mat-datepicker-toggle>
+                            <mat-datepicker #hire_date></mat-datepicker>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput autocomplete="off" formControlName="phone_number">
+                            <!-- Añadido phone_number -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Salario</mat-label>
+                            <input matInput autocomplete="off" formControlName="salary">
+                            <!-- Añadido salary -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Puesto</mat-label>
+                            <input matInput autocomplete="off" formControlName="job_id">
+                            <!-- Añadido job_id -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Comisión</mat-label>
+                            <input matInput autocomplete="off" formControlName="commission_pct">
+                            <!-- Añadido commission_pct -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>ID del Gerente</mat-label>
+                            <input matInput autocomplete="off" formControlName="manager_id">
+                            <!-- Añadido manager_id -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field>
+                            <mat-label>Departamento</mat-label>
+                            <input matInput autocomplete="off" formControlName="department_id">
+                            <!-- Añadido department_id -->
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="actorForm.invalid" (click)="guardarActor()">{{ accionButton }}</button>
+</mat-dialog-actions>

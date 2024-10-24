@@ -1,0 +1,119 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<mat-card *ngIf="!loading" class="mx-20 my-4">
+    <mat-card-title>
+        <mat-toolbar color="secondary">
+            <span>Empleados</span>
+            <!-- Cambiado a Empleados -->
+            <button mat-raised-button color="primary" class="ml-auto" (click)="createActor()">
+                <mat-icon>add</mat-icon>
+                <span>Agregar Empleado</span> <!-- Cambiado a Empleado -->
+            </button>
+        </mat-toolbar>
+        <mat-form-field>
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="filterActorData($event)" #input>
+        </mat-form-field>
+    </mat-card-title>
+    <mat-card-content class="dashboard-card-content">
+        <div class="mat-elevation-z8" style="overflow: auto;">
+            <table mat-table [dataSource]="actorData">
+                <!-- ID Column -->
+                <ng-container matColumnDef="employee_id">
+                    <th mat-header-cell *matHeaderCellDef class="w-0"> ID. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.employee_id}} </td>
+                    <!-- Cambiado a employee_id -->
+                </ng-container>
+
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="first_name">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.first_name}} </td>
+                    <!-- Cambiado a first_name -->
+                </ng-container>
+
+                <!-- Apellido Column -->
+                <ng-container matColumnDef="last_name">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Apellido </th>
+                    <td mat-cell *matCellDef="let element"> {{element.last_name}} </td>
+                    <!-- Cambiado a last_name -->
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef class="w-15"> Email </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    <!-- Añadido email -->
+                </ng-container>
+
+                <!-- Teléfono Column -->
+                <ng-container matColumnDef="phone_number">
+                    <th mat-header-cell *matHeaderCellDef class="w-10"> Teléfono </th>
+                    <td mat-cell *matCellDef="let element"> {{element.phone_number}} </td>
+                    <!-- Añadido phone_number -->
+                </ng-container>
+
+                <!-- Fecha de Ingreso Column-->
+                <ng-container matColumnDef="hire_date">
+                    <th mat-header-cell *matHeaderCellDef class="w-5" style="text-align: center;"> Fecha Ingreso </th>
+                    <td mat-cell *matCellDef="let element"> {{element.hire_date}} </td>
+                    <!-- Cambiado a hire_date -->
+                </ng-container>
+
+                <!-- Job ID Column -->
+                <ng-container matColumnDef="job_id">
+                    <th mat-header-cell *matHeaderCellDef class="w-10"> Puesto </th>
+                    <td mat-cell *matCellDef="let element"> {{element.job_id}} </td>
+                    <!-- Añadido job_id -->
+                </ng-container>
+
+                <!-- Salario Column -->
+                <ng-container matColumnDef="salary">
+                    <th mat-header-cell *matHeaderCellDef class="w-10"> Salario </th>
+                    <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+                    <!-- Añadido salary -->
+                </ng-container>
+
+                <!-- Comisión Column -->
+                <ng-container matColumnDef="commission_pct">
+                    <th mat-header-cell *matHeaderCellDef class="w-10"> Comisión </th>
+                    <td mat-cell *matCellDef="let element"> {{element.commission_pct ? element.commission_pct : 'N/A'}} </td>
+                    <!-- Añadido commission_pct -->
+                </ng-container>
+
+                <!-- Manager ID Column -->
+                <ng-container matColumnDef="manager_id">
+                    <th mat-header-cell *matHeaderCellDef class="w-10"> Manager ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.manager_id ? element.manager_id : 'N/A'}} </td>
+                    <!-- Añadido manager_id -->
+                </ng-container>
+
+                <!-- Departamento Column -->
+                <ng-container matColumnDef="department_id">
+                    <th mat-header-cell *matHeaderCellDef class="w-10"> Departamento </th>
+                    <td mat-cell *matCellDef="let element"> {{element.department_id ? element.department_id : 'N/A'}} </td>
+                    <!-- Añadido department_id -->
+                </ng-container>
+
+                <!-- Acciones Column -->
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef class="w-5">Acciones</th>
+                    <td mat-cell *matCellDef="let element" style="text-align: start;">
+                        <a class="pointer text-sky-700" matTooltip="Editar Empleado" (click)="updateActor(element)">
+                            <mat-icon>edit</mat-icon>
+                        </a>
+                        <a class="pointer text-red-500" matTooltip="Eliminar Empleado" (click)="deleteActor(element.employee_id)">
+                            <mat-icon>delete</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+            </mat-paginator>
+        </div>
+    </mat-card-content>
+</mat-card>
